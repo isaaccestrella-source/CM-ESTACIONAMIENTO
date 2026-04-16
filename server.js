@@ -3,27 +3,19 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.send("Servidor activo");
+});
+
 app.post("/webhook", (req, res) => {
-  const fecha = new Date();
-
-  const respuesta = `
-🚗 CM Estacionamiento Público
-
-📅 Fecha: ${fecha.toLocaleDateString()}
-⏰ Hora: ${fecha.toLocaleTimeString()}
-💰 Precio por hora: $15.00 MXN
-  `;
-
   res.set("Content-Type", "text/xml");
   res.send(`
 <Response>
-<Message>${respuesta}</Message>
-</Response>
-  `);
+  <Message>Prueba exitosa desde CM Estacionamiento</Message>
+</Response>`);
 });
 
 const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log("Servidor corriendo 🚀");
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("Servidor corriendo en puerto " + PORT);
 });
