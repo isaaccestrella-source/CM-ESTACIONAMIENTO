@@ -7,11 +7,14 @@ const registros = {};
 const TARIFA_POR_HORA = 15;
 
 function formatearFecha(fecha) {
-  return fecha.toLocaleDateString("es-MX");
+  return fecha.toLocaleDateString("es-MX", {
+    timeZone: "America/Mexico_City"
+  });
 }
 
 function formatearHora(fecha) {
   return fecha.toLocaleTimeString("es-MX", {
+    timeZone: "America/Mexico_City",
     hour: "2-digit",
     minute: "2-digit"
   });
